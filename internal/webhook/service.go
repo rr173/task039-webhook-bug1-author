@@ -210,7 +210,7 @@ func (s *Service) List(status string) ([]*Event, error) {
 	}
 	s.mu.Lock()
 	defer s.mu.Unlock()
-	var out []*Event
+	out := make([]*Event, 0, len(s.events))
 	for _, ev := range s.events {
 		if status != "" && ev.Status != status {
 			continue
